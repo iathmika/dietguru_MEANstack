@@ -2,7 +2,8 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
 var mongoose = require('mongoose');
-
+const multer = require('multer');
+fs = require('fs-extra');
 router.get('/', function (req, res, next) {
 	return res.render('index.ejs');
 });
@@ -114,6 +115,43 @@ router.get('/forgetpass', function (req, res, next) {
 	res.render("forget.ejs");
 });
 
+//profile pic upload
+const MongoClient = require('mongodb').MongoClient
+var ObjectId = require('mongodb').ObjectId
+
+const myurl = 'mongodb://localhost:27017';
+
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now())
+  }
+})
+var upload = multer({ storage: storage })
+
+router.post('/uploadphoto', upload.single('myImage'), (req, res) => {
+	var img = fs.readFileSync(req.file.path);
+ var encode_image = img.toString('base64');
+ // Define a JSONobject for the image attributes for saving to database
+ 
+ var finalImg = {
+      contentType: req.file.mimetype,
+      image:  new Buffer(encode_image, 'base64')
+   };
+User.updateOne(finalImg, (err, result) => {
+  	console.log(result)
+
+    if (err) return console.log(err)
+
+    console.log('saved to database')
+    res.redirect('/')
+  
+    
+  })
+})
 router.post('/forgetpass', function (req, res, next) {
 	//console.log('req.body');
 	//console.log(req.body);

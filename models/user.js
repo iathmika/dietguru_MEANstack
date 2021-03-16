@@ -7,7 +7,13 @@ userSchema = new Schema( {
 	email: String,
 	username: String,
 	password: String,
-	passwordConf: String
+	passwordConf: String,
+	img:{
+		data: Buffer,
+		contentType: String
+	}
+
+
 }),
 User = mongoose.model('User', userSchema);
 
