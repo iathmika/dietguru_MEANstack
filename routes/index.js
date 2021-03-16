@@ -36,7 +36,8 @@ router.post('/', function(req, res, next) {
 							email:personInfo.email,
 							username: personInfo.username,
 							password: personInfo.password,
-							passwordConf: personInfo.passwordConf
+							passwordConf: personInfo.passwordConf,
+							img: "uploads/"
 						});
 
 						newPerson.save(function(err, Person){
@@ -92,7 +93,7 @@ router.get('/profile', function (req, res, next) {
 			res.redirect('/');
 		}else{
 			//console.log("found");
-			return res.render('data.ejs', {"name":data.username,"email":data.email});
+			return res.render('data.ejs', {"name":data.username,"email":data.email, "img": data.img});
 		}
 	});
 });
@@ -133,21 +134,13 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage })
 
 router.post('/uploadphoto', upload.single('myImage'), (req, res) => {
-	var img = fs.readFileSync(req.file.path);
- var encode_image = img.toString('base64');
- // Define a JSONobject for the image attributes for saving to database
- 
- var finalImg = {
-      contentType: req.file.mimetype,
-      image:  new Buffer(encode_image, 'base64')
-   };
-User.updateOne(finalImg, (err, result) => {
+User.updateOne({unique_id:req.session.userId}, { $set: {img: req.file.path } }, (err, result) => {
   	console.log(result)
 
     if (err) return console.log(err)
 
     console.log('saved to database')
-    res.redirect('/')
+    res.redirect('/profile')
   
     
   })

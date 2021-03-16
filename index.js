@@ -52,13 +52,13 @@ app.use(function (req, res, next) {
   next(err);
 });
 
+
 // error handler
 // define as the last app.use callback
 app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.send(err.message);
 });
-
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, function () {
