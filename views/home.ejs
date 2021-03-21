@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>DietGuru</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+
+  <script src="https://cdn.timekit.io/booking-js/v2/booking.min.js" defer></script>
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css' rel='stylesheet' />
+  <style>
+    .marker {
+      background-image: url('assets/img/dietlogo.png');
+      background-size: cover;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    .mapboxgl-popup {
+      max-width: 200px;
+    }
+
+    .mapboxgl-popup-content {
+      text-align: center;
+      font-family: 'Open Sans', sans-serif;
+      color: black;
+    }
+  </style>  
+</head>
+
+<body>
+
+  <!-- ======= Top Bar ======= -->
+  <div id="topbar" class="d-flex align-items-center fixed-top">
+    <div class="container d-flex justify-content-between">
+      <div class="contact-info">
+        <i class="icofont-phone"></i> +91 7506071803
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <h1 class="logo"><a href="/home">DietGuru</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li class="active"><a href="/home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <!-- <li><a href="#recipes">Recipes</a></li> -->
+          <li><a href="/profile">My Profile</a> </li>
+          <li><a href="#developers">Developers</a></li>
+          <li><a href="#contact">Dietician Search</a></li>
+          <li><a href=/login>LOGIN</a></li>
+          <li><a href=/> REGISTER</a></li>
+
+        </ul>
+      </nav><!-- .nav-menu -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+    <div class="container position-relative text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100">
+      <div class="row">
+        <div class="col-lg-8">
+          <h1>Welcome to <span>DietGuru</span></h1>
+          <h2>Your health is our health!</h2>
+
+        </div>
+        <div class="col-lg-4 d-flex align-items-center justify-content-center" data-aos="zoom-in" data-aos-delay="200">
+          <a href="https://www.youtube.com/watch?v=TYle6cWaAfo" class="venobox play-btn" data-vbtype="video" data-autoplay="true"></a>
+        </div>
+
+      </div>
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row">
+          <div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in" data-aos-delay="100">
+            <div class="about-img">
+              <img src="https://cdn.aarp.net/content/dam/aarp/health/caregiving/2018/03/1140-nutrients-food-loved-ones-caregiving.jpg" alt="">
+            </div>
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
+            <h3> Vision </h3>
+            <p>
+              MyDietGuru’s vision is to continuously make a positive difference in
+              people’s lives through diet, nutrition, and psychology-based informative interventions.
+            </p>
+            <h3>  Mission Statement </h3>
+            <p>
+              Enable anyone seeking help with her / his diet plans as well as insights into mental well-being, to easily find and access the required and correct information from competent sources, to be able to live healthily and happily.
+
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+    <!-- ======= Recipes Section ======= -->
+    <section id="recipes" class="recipes">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Recipes</h2>
+          <p>Today's Healthy Recipes</p>
+        </div>
+
+        <div class="owl-carousel events-carousel" data-aos="fade-up" data-aos-delay="100">
+
+          <div class="row event-item">
+            <div class="col-lg-6">
+              <img src="https://www.acouplecooks.com/wp-content/uploads/2019/01/Chocolate-Blueberry-Smoothie-003.jpg" img-fluid" alt="">
+            </div>
+            <div class="col-lg-6 pt-4 pt-lg-0 content">
+              <h3>Cacao Blueberry Smoothie</h3>
+              <p class="font-italic">
+                Um, YUM. This smoothie is full of amazing flavors from blueberry, vanilla, coconut milk, and of course, cacao powder. You can whip this up in under five minutes, but if you’re especially lazy in the morning, just make at night to take on the go the next day.
+              </p>
+            </div>
+          </div>
+
+          <div class="row event-item">
+            <div class="col-lg-6">
+              <img src="https://www.ambitiouskitchen.com/wp-content/uploads/2015/09/Honey-Lemon-Ricotta-Breakfast-Toast-with-Figs-Pistachios-square.jpg" class="img-fluid" alt="">
+            </div>
+            <div class="col-lg-6 pt-4 pt-lg-0 content">
+              <h3>Honey Lemon Ricotta Breakfast Toast</h3>
+              <p class="font-italic">
+                Say goodbye to boring toast. This version dresses up a piece of bread with ricotta, lemon, figs, honey, and pistachios for a fancy (but super fast) breakfast treat. Pro tip: these guys work great as apps if you put them on crostinis instead.
+              </p>
+            </div>
+          </div>
+
+          <div class="row event-item">
+            <div class="col-lg-6">
+              <img src="https://www.eatingbirdfood.com/wp-content/uploads/2018/05/egg-and-greens-bowl-2.jpg" class="img-fluid" alt="">
+            </div>
+            <div class="col-lg-6 pt-4 pt-lg-0 content">
+              <h3>Poached Egg and Avocado Breakfast Salad</h3>
+              <p class="font-italic">
+                You can have salad for breakfast, too. Just whip up a poached egg (or any other style you love) and toss it in a bowl with some tomatoes, lettuce, cooked quinoa, avo, and pistachios for an added crunch. Just cook the quinoa the night before if you want it truly under 12 minutes.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Recipes Section -->
+
+    <!-- ======= developers Section ======= -->
+    <section id="developers" class="developers">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Developers</h2>
+          <p>Our Website Developers</p>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6">
+            <div class="member" data-aos="zoom-in" data-aos-delay="100">
+              <img src="" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Athmika Hebbar</h4>
+                  <span>Designer & Developer</span>
+                </div>
+                <div class="social">
+                  <a href=""><i class="icofont-twitter"></i></a>
+                  <a href=""><i class="icofont-facebook"></i></a>
+                  <a href=""><i class="icofont-instagram"></i></a>
+                  <a href="feed.xml"><i class="icofont-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="member" data-aos="zoom-in" data-aos-delay="200">
+              <img src="" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Riddhi Doshi</h4>
+                  <span>Designer & Developer</span>
+                </div>
+                <div class="social">
+                  <a href=""><i class="icofont-twitter"></i></a>
+                  <a href=""><i class="icofont-facebook"></i></a>
+                  <a href=""><i class="icofont-instagram"></i></a>
+                  <a href=""><i class="icofont-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End developers Section -->
+    <!-- ======= Appointments list Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Available appointments with dietitians</h2>
+    
+        </div>
+      </div>
+      <script >
+        
+        var slots = [{"id":794558,"name":"D1","count":1,"start":"2021-02-03T10:00","finish":"2021-02-03T11:00"},
+    {"id":794559,"name":"D2","count":1,"start":"2021-02-03T10:00","finish":"2021-02-03T11:00"},
+    {"id":794560,"name":"D3","count":1,"start":"2021-02-03T10:00","finish":"2021-02-03T11:00"},
+    {"id":794561,"name":"D4","count":1,"start":"2021-02-03T10:00","finish":"2021-02-03T11:00"},
+    {"id":794562,"name":"D5","count":1,"start":"2021-02-03T11:00","finish":"2021-02-03T12:00"}];
+    
+
+        for(var i=0;i<slots.length;i++){
+          var object = slots[i];
+          document.write(' <div class="container" data-aos="fade-up">     ');
+                
+          document.write(object['start']);
+          
+          document.write(' </div> <br>');
+          }
+
+        
+      </script>
+
+  
+    
+
+
+
+    </section><!-- End Appointment Section -->
+
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Search</h2>
+          <p>Find a Dietician</p>
+        </div>
+      </div>
+
+      <div data-aos="fade-up" id="map">
+        <iframe id="map" style="border:0; width: 100%; height: 350px;" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </section><!-- End Contact Section -->
+
+    
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-info">
+              <h3>DietGuru</h3>
+                <strong>Phone:</strong> +91 7506071803<br>
+                <strong>Email:</strong> riddhi.rd@somaiya.edu/athmika.h@somaiya.edu<br>
+              </p>
+              <div class="social-links mt-3">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="feed.xml" class="linkedin"><i class="bx bx-rss"></i></a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>DietGuru</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        Designed by <a href="">us</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top"><i class="bx bx-up-arrow-alt"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/jquery/jquery.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/venobox/venobox.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+  <script>
+    var appointment = { slots: [
+    {"id":794558,"name":"D1","count":1,"start":"2021-02-03T10:00","finish":"2021-02-03T11:00"},
+    {"id":794559,"name":"D2","count":1,"start":"2021-02-03T10:00","finish":"2021-02-03T11:00"},
+    {"id":794560,"name":"D3","count":1,"start":"2021-02-03T10:00","finish":"2021-02-03T11:00"},
+    {"id":794561,"name":"D4","count":1,"start":"2021-02-03T10:00","finish":"2021-02-03T11:00"},
+    {"id":794562,"name":"D5","count":1,"start":"2021-02-03T10:00","finish":"2021-02-03T11:00"},
+    {"id":794563,"name":"D6","count":1,"start":"2021-02-03T10:00","finish":"2021-02-03T11:00"},
+    {"id":794564,"name":"D7","count":1,"start":"2021-02-03T10:00","finish":"2021-02-03T11:00"},
+    {"id":794565,"name":"D8","count":1,"start":"2021-02-03T10:00","finish":"2021-02-03T11:00"},
+    {"id":794566,"name":"D9","count":1,"start":"2021-02-03T10:00","finish":"2021-02-03T11:00"},
+    {"id":794567,"name":"D10","count":1,"start":"2021-02-03T10:00","finish":"2021-02-03T11:00"}] };
+    var slots  = JSON.parse(appointment);
+
+  </script>
+  <script>
+    
+    mapboxgl.accessToken = 'pk.eyJ1IjoicmRvc2hpMjkiLCJhIjoiY2trZjF6aW1jMHJhZjJwcXU5ZW9nMmZ5aiJ9.Q-PYeI79kLq52C3IyZOSPg';
+    
+    var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/light-v10',
+      center: [78.9629, 20.5937],
+      zoom: 4
+    });
+    
+    // Add geolocate control to the map.
+    map.addControl(
+    new mapboxgl.GeolocateControl({
+    positionOptions: {
+    enableHighAccuracy: true
+    },
+    trackUserLocation: true
+    })
+    );
+    
+    var geojson = {
+      dieticians: [{ 
+        id: "794558",
+        name: "Riddhi Doshi",
+        location: [72.978088, 19.218330],
+        start :"2021-02-03T10:00",
+        finish :"2021-02-03T11:00"
+      },
+      {
+        id: "794559",
+        name: "Athmika Hebbar",
+        location: [72.908218, 19.085649],
+        start :"2021-02-03T10:00",
+        finish :"2021-02-03T11:00"
+
+      },
+      {
+        id: "794560",
+        name: "Manali Bagwe",
+        location: [73.116844, 18.990713],
+        start :"2021-02-03T10:00",
+        finish :"2021-02-03T11:00"
+      },
+      {
+        id: "794561",
+        name: "Aditi Bhagwat",
+        location: [72.998993, 19.077065],
+        start :"2021-02-03T10:00",
+        finish :"2021-02-03T11:00"
+      }]
+    };
+    // add markers to map
+    geojson.dieticians.forEach(function(marker) {
+
+    // create a HTML element for each feature
+    var el = document.createElement('div');
+    el.className = 'marker';
+
+    // make a marker for each feature and add to the map
+    new mapboxgl.Marker(el)
+      .setLngLat(marker.location)
+      .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+        .setHTML('<h3>' + marker.name + '</h3><p>' + marker.id + '<br>' + 
+          marker.start+'<br>' + marker.finish + '</p><button type="button" onclick="fetchBtn();" id="fetchBtn" class="btn btn-primary">	Fetch Data </button>'))
+      .addTo(map);
+      });
+  </script>
+  <script>
+    function fetchBtn(){
+      window.open("https://www.supersaas.com/api/free/550147.json?from=2021-04-01%2023:00:00&api_key=iHO9JYx4mje151erlPuQKw")
+    }
+  </script>
+</body>
+
+</html>

@@ -8,6 +8,9 @@ router.get('/', function (req, res, next) {
 	return res.render('index.ejs');
 });
 
+router.get('/home' , function(req,res,next){
+	res.render('home.ejs');
+})
 
 router.post('/', function(req, res, next) {
 	console.log(req.body);
@@ -64,8 +67,19 @@ router.get('/login', function (req, res, next) {
 	return res.render('login.ejs');
 });
 
+var requestTime = function (req, res, next) {
+	req.requestTime = new  Date()
+	next()
+  }
+  
+router.use(requestTime)
+
 router.post('/login', function (req, res, next) {
 	//console.log(req.body);
+	var responseText = 'Hello World!'
+	responseText += ' Login Time: ' + req.requestTime
+	console.log(responseText)
+  
 	User.findOne({email:req.body.email},function(err,data){
 		if(data){
 			
@@ -85,6 +99,12 @@ router.post('/login', function (req, res, next) {
 });
 
 router.get('/profile', function (req, res, next) {
+	
+	console.log('COOKIES: ')
+	console.log(req.cookies)
+	
+
+
 	console.log("profile");
 	User.findOne({unique_id:req.session.userId},function(err,data){
 		console.log("data");
@@ -106,7 +126,7 @@ router.get('/logout', function (req, res, next) {
     	if (err) {
     		return next(err);
     	} else {
-    		return res.redirect('/');
+    		return res.redirect('/home');
     	}
     });
 }
