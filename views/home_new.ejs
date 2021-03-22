@@ -49,7 +49,39 @@
       font-family: 'Open Sans', sans-serif;
       color: black;
     }
-  </style>  
+  </style>
+  <script type="text/javascript">
+		$(document).ready(function(){
+
+			$( "#form" ).submit(function(event) {
+				event.preventDefault();
+
+				$.ajax({
+					type: 'POST',
+					url: '/home',
+					data: $('#form').serialize(),
+					dataType: "json",
+					success: function(response){
+						//alert("a");
+						//console.log(response.Success);
+						$('#form')[0].reset();
+
+						document.getElementById("check").innerHTML=response.Success;
+         					//ADD THIS CODE
+         					setTimeout(function(){
+         						document.getElementById("check").innerHTML="";
+         					},3000);
+         					if (response.Success=="Success!") {
+         						document.getElementById("aa").click();
+         					};
+         				},
+         				error: function() {
+         				}
+         			})
+			});
+
+		});
+	</script>  
 </head>
 
 <body>
@@ -75,10 +107,9 @@
         <ul>
           <li class="active"><a href="/home">HOME</a></li>
           <li><a href="#about">ABOUT</a></li>
-          <li><a href="#recipes">RECIPES</a></li>
           <li><a href="#developers">DEVELOPERS</a></li>
-          <li><a href="/profile">MY PROFILE</a></li>
-          <li><a href="/logout">LOGOUT</a></li>
+          <li><a href=#login>LOGIN</a></li>
+          <li><a href=/> REGISTER</a></li>
 
         </ul>
       </nav><!-- .nav-menu -->
@@ -115,106 +146,59 @@
               <img src="https://cdn.aarp.net/content/dam/aarp/health/caregiving/2018/03/1140-nutrients-food-loved-ones-caregiving.jpg" alt="">
             </div>
           </div>
-          <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
-            <h3> Vision </h3>
-            <p>
+          <div class="col-lg-6 content">
+            <div class="section-title">
+              <h2>Vision</h2>
+            </div>
+            <span>
               MyDietGuru’s vision is to continuously make a positive difference in
               people’s lives through diet, nutrition, and psychology-based informative interventions.
-            </p>
-            <h3>  Mission Statement </h3>
-            <p>
+            </span>
+            <div class="section-title">
+              <h2>Mission</h2>
+            </div>
+            <span>
               Enable anyone seeking help with her / his diet plans as well as insights into mental well-being, to easily find and access the required and correct information from competent sources, to be able to live healthily and happily.
-
-            </p>
+            </span>
           </div>
         </div>
 
       </div>
     </section><!-- End About Section -->
 
-    <!-- ======= Recipes Section ======= -->
-    <section id="recipes" class="recipes">
+    <!-- ======= developers Section ======= -->
+    <section id="login" class="login">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Recipes</h2>
-          <p>Today's Healthy Recipes</p>
+          <h2>Login</h2>
         </div>
 
-        <div class="owl-carousel events-carousel" data-aos="fade-up" data-aos-delay="100">
-
-          <div class="row event-item">
-            <div class="col-lg-6">
-              <img src="https://www.acouplecooks.com/wp-content/uploads/2019/01/Chocolate-Blueberry-Smoothie-003.jpg" img-fluid" alt="">
-            </div>
-            <div class="col-lg-6 pt-4 pt-lg-0 content">
-              <h3>Cacao Blueberry Smoothie</h3>
-              <p class="font-italic">
-                Um, YUM. This smoothie is full of amazing flavors from blueberry, vanilla, coconut milk, and of course, cacao powder. You can whip this up in under five minutes, but if you’re especially lazy in the morning, just make at night to take on the go the next day.
-              </p>
-            </div>
-          </div>
-
-          <div class="row event-item">
-            <div class="col-lg-6">
-              <img src="https://www.ambitiouskitchen.com/wp-content/uploads/2015/09/Honey-Lemon-Ricotta-Breakfast-Toast-with-Figs-Pistachios-square.jpg" class="img-fluid" alt="">
-            </div>
-            <div class="col-lg-6 pt-4 pt-lg-0 content">
-              <h3>Honey Lemon Ricotta Breakfast Toast</h3>
-              <p class="font-italic">
-                Say goodbye to boring toast. This version dresses up a piece of bread with ricotta, lemon, figs, honey, and pistachios for a fancy (but super fast) breakfast treat. Pro tip: these guys work great as apps if you put them on crostinis instead.
-              </p>
-            </div>
-          </div>
-
-          <div class="row event-item">
-            <div class="col-lg-6">
-              <img src="https://www.eatingbirdfood.com/wp-content/uploads/2018/05/egg-and-greens-bowl-2.jpg" class="img-fluid" alt="">
-            </div>
-            <div class="col-lg-6 pt-4 pt-lg-0 content">
-              <h3>Poached Egg and Avocado Breakfast Salad</h3>
-              <p class="font-italic">
-                You can have salad for breakfast, too. Just whip up a poached egg (or any other style you love) and toss it in a bowl with some tomatoes, lettuce, cooked quinoa, avo, and pistachios for an added crunch. Just cook the quinoa the night before if you want it truly under 12 minutes.
-              </p>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Recipes Section -->
-
-    
-    <!-- ======= Nutrition Section ======= -->
-    <section id="nutrition" class="nutrition">
-      <div class="container" data-aos="fade-up">
-        <div class="section-title">
-          <h2>Search</h2>
-          <p>Find nutrition information</p>
-        </div>
-      </div>
-
-      <div data-aos="fade-up" id="">
-          <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-3 form-group">
-              <input type="text" name="food-item" class="form-control" id="food-item" placeholder="Food Item" data-rule="minlen:3" data-msg="Please enter at least 3 chars" />
-            </div>
-              <div class="text-center col-md-3"><button onclick="clearr();" class="btn btn-dark">Clear result</button></div>
-          </div>
-          <br>
-          
-          <div class="row">  
-          <div class="col-md-3"></div>
-          <div class="text-center col-md-3"><button onclick="fetch();" class="btn btn-dark">Get result</button></div>
-          </div>
-        <div class="messages">
-        </div>
         <div class="row">
-          <div class="text-center col-md-3"><button onclick="fetch();" class="btn btn-dark" class="nextBtn" style="visibility: visible;">Next result</button></div>
+          <div class="col-md-4 col-md-offset-4">
+            <div class="form-group">
+              <form id="form" method="post" >
+                <input type="text" name="email" placeholder="E-mail" required="" class="form-control"><br/>
+                <input type="password" name="password" placeholder="Password" required="" class="form-control"><br/>
+                <input type="submit" value="Login" class="btn btn-success">
+              </form>
+            </div>
+            <div class="mssg bg-danger">
+              <span id="check" ></span>
+            </div>
+            <div id="LangTable"><a href="/home" id="aa"></a>
+            </div>
+            <div><span>Do you forgot password?</span><a href="/forgetpass">Click here</a>
+            <div><span>Create a new Account?</span><a href="/">Register here</a>
+        
+            </div>
+            
           </div>
+        </div>
+
       </div>
-    </section><!-- End nutrition Section -->
+    </section><!-- End login Section -->
+    
 
     <!-- ======= developers Section ======= -->
     <section id="developers" class="developers">
@@ -239,7 +223,7 @@
                   <a href=""><i class="icofont-twitter"></i></a>
                   <a href=""><i class="icofont-facebook"></i></a>
                   <a href=""><i class="icofont-instagram"></i></a>
-                  <a href=""><i class="icofont-linkedin"></i></a>
+                  <a href="feed.xml"><i class="icofont-linkedin"></i></a>
                 </div>
               </div>
             </div>
@@ -267,6 +251,7 @@
 
       </div>
     </section><!-- End developers Section -->
+    
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
@@ -320,45 +305,6 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   
-  <script>
-    const cparams = {
-        api_key: "IWRqpdge4yBs2wnyuLDVKtxvpyt0WqvK13zhvuYf",
-        dataType: ["Survey (FNDDS)"],
-        pageSize: 1,
-    };
-    let currentPage = 0
-    function clearr(){
-      currentPage = 0;
-      window.location.reload();
-    }
-    function fetch(){
-      currentPage++;
-      var query = document.getElementById("food-item").value;
-        $.ajax({
-            url: "https://api.nal.usda.gov/fdc/v1/foods/search?api_key="+(encodeURIComponent(cparams.api_key))+"&query="+(encodeURIComponent(query))+"&pageSize="+(encodeURIComponent(cparams.pageSize))+"&dataType="+(encodeURIComponent(cparams.dataType))+"&pageNumber="+(encodeURIComponent(currentPage)),
-            type: "GET",
-            dataType: "json",
-            contentType: "application/json",
-            success: function(data){
-              console.log("https://api.nal.usda.gov/fdc/v1/foods/search?api_key="+(encodeURIComponent(cparams.api_key))+"&query="+(encodeURIComponent(query))+"&pageSize="+(encodeURIComponent(cparams.pageSize))+"&dataType="+(encodeURIComponent(cparams.dataType))+"&pageNumber="+(encodeURIComponent(currentPage)))
-                totalPages = data.totalPages
-                if(totalPages == 0){
-                  $('.messages').append("<br><div class='section-title'><h2>This item does not exist!</h2></div>");
-                }
-                for (j=0; j<data.foods.length; j++){
-                    $('.messages').append("<h4>" + data.foods[j].description + "</h4>");
-                    $('.messages').append("<ul>");
-                    for (k=0; k<data.foods[j].foodNutrients.length;k++){
-                      if(data.foods[j].foodNutrients[k].value != 0){
-                        $('.messages').append("<li>" + data.foods[j].foodNutrients[k].nutrientName + " - "+ data.foods[j].foodNutrients[k].value + data.foods[j].foodNutrients[k].unitName + "</li>");
-                      }
-                    }
-                    $('.messages').append("</ul>");
-                }
-            }
-        });
-    }
-  </script>
 </body>
 
 </html>

@@ -9,8 +9,17 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/home' , function(req,res,next){
-	res.render('home.ejs');
-})
+	User.findOne({unique_id:req.session.userId},function(err,data){
+		console.log("data");
+		console.log(data);
+		if(!data){
+			res.render('home_new.ejs');
+		}
+		else{
+		res.render('home.ejs');
+		}
+	})
+});
 
 router.post('/', function(req, res, next) {
 	console.log(req.body);
@@ -51,7 +60,7 @@ router.post('/', function(req, res, next) {
 						});
 
 					}).sort({_id: -1}).limit(1);
-					res.send({"Success":"You are regestered,You can login now."});
+					res.send({"Success":"You are registered, You can login now."});
 				}else{
 					res.send({"Success":"Email is already used."});
 				}
@@ -63,9 +72,9 @@ router.post('/', function(req, res, next) {
 	}
 });
 
-router.get('/login', function (req, res, next) {
-	return res.render('login.ejs');
-});
+//router.get('/login', function (req, res, next) {
+//	return res.render('login.ejs');
+//});
 
 var requestTime = function (req, res, next) {
 	req.requestTime = new  Date()
@@ -74,7 +83,7 @@ var requestTime = function (req, res, next) {
   
 router.use(requestTime)
 
-router.post('/login', function (req, res, next) {
+router.post('/home', function (req, res, next) {
 	//console.log(req.body);
 	var responseText = 'Hello World!'
 	responseText += ' Login Time: ' + req.requestTime

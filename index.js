@@ -2,6 +2,8 @@ var express = require('express');
 var env = require('dotenv').config()
 var ejs = require('ejs');
 var path = require('path');
+var https = require('https');
+var fs = require('fs');
 var app = express();
 
 var bodyParser = require('body-parser');
@@ -9,7 +11,6 @@ var mongoose = require('mongoose');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var MongoStore = require('connect-mongo');(session);
-
 
 mongoose.connect('mongodb://localhost:27017/login-register',{
   useNewUrlParser: true,
@@ -60,31 +61,19 @@ app.use(express.static(__dirname + '/views'));
 var index = require('./routes/index');
 app.use('/', index);
 
+var r_index = require('./routes/recipe');
+app.use('/recipe', r_index);
 
-
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  var err = new Error('404 Page Not Found');
-  err.status = 404;
- 
-  next(err);
+// catch 404 erro
+app.use(function(req,res){
+  res.status(404).render('404_error_template.ejs');
 });
 
+const sslServer = https.createServer({
+    'key': fs.readFileSync(path.join(__dirname, 'cert', 'key.pem')),
+    'cert': fs.readFileSync(path.join(__dirname, 'cert', 'cert.pem'))
+  },
+  app
+);
 
-// error handler
-// define as the last app.use callback
-app.use(function (err, req, res, next) {
-  
-  res.send('<center> <h1> 404 Page not found </h1> </center>');
-  //res.status(err.status || 500);
-  //res.send(err.message);
-});
-
-
-// catch 404 and forward to error handler
-
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, function () {
-  console.log('Server is started on http://127.0.0.1:'+PORT);
-});
+sslServer.listen('3443', ()=>console.log('Secure server started on post 3443.'));

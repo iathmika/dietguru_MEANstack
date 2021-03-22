@@ -13,7 +13,11 @@ body {
   background: #181612;
   color: #fff;
 }
-
+.mssg{
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border-radius: 5px;
+}
 a {
   color: #cda45e;
   text-decoration: none;
@@ -790,7 +794,6 @@ section {
 # About
 --------------------------------------------------------------*/
 .about {
-  background: url("../img/about-bg.jpg") center center;
   background-size: cover;
   position: relative;
   padding: 80px 0;

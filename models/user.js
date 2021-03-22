@@ -8,11 +8,7 @@ userSchema = new Schema( {
 	username: String,
 	password: String,
 	passwordConf: String,
-	img:{
-		data: Buffer,
-		contentType: String
-	}
-
+	img: String
 
 }),
 User = mongoose.model('User', userSchema);
