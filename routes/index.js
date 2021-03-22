@@ -146,8 +146,8 @@ router.get('/forgetpass', function (req, res, next) {
 });
 
 //profile pic upload
-const MongoClient = require('mongodb').MongoClient
-var ObjectId = require('mongodb').ObjectId
+const MongoClient = require('mongodb').MongoClient;
+var ObjectId = require('mongodb').ObjectId;
 
 const myurl = 'mongodb://localhost:27017';
 
@@ -159,7 +159,7 @@ var storage = multer.diskStorage({
   filename: function (req, file, cb) {
     cb(null, file.fieldname + '-' + Date.now())
   }
-})
+});
 var upload = multer({ storage: storage })
 
 router.post('/uploadphoto', upload.single('myImage'), (req, res) => {
@@ -168,12 +168,12 @@ User.updateOne({unique_id:req.session.userId}, { $set: {img: req.file.path } }, 
 
     if (err) return console.log(err)
 
-    console.log('saved to database')
-    res.redirect('/profile')
+    console.log('saved to database');
+    res.redirect('/profile');
   
     
-  })
-})
+  });
+});
 router.post('/forgetpass', function (req, res, next) {
 	//console.log('req.body');
 	//console.log(req.body);

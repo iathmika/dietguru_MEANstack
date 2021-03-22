@@ -61,8 +61,8 @@ app.use(express.static(__dirname + '/views'));
 var index = require('./routes/index');
 app.use('/', index);
 
-var r_index = require('./routes/recipe');
-app.use('/recipe', r_index);
+var r_index = require('./routes/recipes');
+app.use('/recipes', r_index);
 
 // catch 404 erro
 app.use(function(req,res){
