@@ -63,6 +63,10 @@ app.use('/', index);
 var r_index = require('./routes/recipes');
 app.use('/recipes', r_index);
 
+app.post('/login', (req, res)=>{
+  res.render('login');
+});
+
 // catch 404 erro
 app.use(function(req,res){
   res.status(404).render('404_error_template.ejs');
