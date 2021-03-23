@@ -1,17 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" integrity="sha512-EZLkOqwILORob+p0BXZc+Vm3RgJBOe1Iq/0fiI7r/wJgzOFZMlsqTa29UEl6v6U6gsV4uIpsNZoV32YZqrCRCQ==" crossorigin="anonymous" />
-    <title>Document</title>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>DietGuru</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Vendor CSS Files -->
+  <link href="../../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="../../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../../assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="../../assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="../../assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="../../assets/vendor/aos/aos.css" rel="stylesheet">
+
+  <script src="https://cdn.timekit.io/booking-js/v2/booking.min.js" defer></script>
+
+  <!-- Template Main CSS File -->
+  <link href="../../assets/css/style.css" rel="stylesheet">
+  <link href="../../css/main.css" rel="stylesheet">
+
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
+
 <body>
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center justify-content-between">
+   
+      <a class="logo"><img src="<%= user.picture %>" alt="" class="img-fluid"></a>
+      <h1 class="logo"><a href="/admins/dietplan">DietGuru - <%= user.name %></a></h1>
 
-    <a href="/admins/logout">Sign Out</a>  
-    <h1>Hi <%= user.name %></h1>
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li class="active"><a href="/admins/dietplan">DIETPLANS</a></li>
+          <li><a href="/admins/dietplan/new">NEW</a></li>
+          <li><a href="/admins/logout">LOGOUT</a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
 
-    <img src="<%= user.picture %>" alt="">
+    </div>
+  </header><!-- End Header -->
+<br>
+<br>
+<br>
+<br>
 
+  <main id="main">
+    
+    <div class="row">
+
+      <% if(plans.length<1){%>
+      <p class="text-white">No posts yet, create a new one</p>
+      <%  } %>
+
+
+      <% plans.forEach(plan=>{ %>
+      <div class="col-lg-6 card-dark mt-2 mr-0">
+          <div class="row p-2">
+              <div class="col-7">
+                  <div class="d-flex align-items-start">
+                      <h5 class="w-100"><b> <%= plan.title %> </b></h5>
+                      <!-- display more button -->
+                      <div class="more position-relative" style="cursor: pointer;">
+                          <i class="material-icons p-2">more_vert</i>
+                          <!-- options list -->
+                          <div class="d-none options card rounded-pill shadow-sm p-1 position-absolute">
+                              <a href="/admins/dietplan/edit/<%= plan.id %> " class="rounded-circle p-2 mb-2"
+                                  style="background:blue;">
+                                  <i class="material-icons" style="color:white">create</i>
+                              </a>
+                              <form action="/admins/dietplan/<%=plan.id%>?_method=DELETE" method="POST">
+                                  <button class="rounded-circle p-2 bg-danger">
+                                      <i class="material-icons" style="color:white">delete</i>
+                                  </button>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+                  <span class="align-self-stretch "><%= plan.snippet %>
+                  </span>
+                  <div class="d-flex align-items-end">
+                      <div class="mr-2">
+                          <img src="/uploads/<%= plan.img %>" class="rounded-circle"
+                              style="width: 40px; height: 40px;">
+                      </div>
+                      <div class=" flex-grow-1">
+                          <h5 class="" style="font-size: 14px; line-height: 0.5rem;">
+                              <span><b><%= plan.url%></b></span></h5>
+                          <p style="font-size: 8px; line-height: 0.2rem;">
+                              <%= plan.timeCreated.toLocaleDateString() %></p>
+                      </div>
+                      <a href="/admins/dietplan/<%=plan.slug %> " class=" align-self-end">
+                          <i class='material-icons ml-3 text-black'>send</i>
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <% }) %>
+
+
+
+
+  </div>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-info">
+              <h3>DietGuru</h3>
+                <strong>Phone:</strong> +91 7506071803<br>
+                <strong>Email:</strong> riddhi.rd@somaiya.edu/athmika.h@somaiya.edu<br>
+              </p>
+              <div class="social-links mt-3">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="feed.xml" class="linkedin"><i class="bx bx-rss"></i></a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>DietGuru</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        Designed by <a href="">us</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top"><i class="bx bx-up-arrow-alt"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="../../assets/vendor/jquery/jquery.min.js"></script>
+  <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../../assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="../../assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="../../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../../assets/vendor/venobox/venobox.min.js"></script>
+  <script src="../../assets/vendor/aos/aos.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../../assets/js/main.js"></script>
+  
 </body>
+
 </html>

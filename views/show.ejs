@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>DietGuru</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="../../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../../assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="../../assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="../../assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="../../assets/vendor/aos/aos.css" rel="stylesheet">
+
+  <script src="https://cdn.timekit.io/booking-js/v2/booking.min.js" defer></script>
+
+  <!-- Template Main CSS File -->
+  <link href="../../assets/css/style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://cdn.tiny.cloud/1/mxs4iu7vh07bhl5m90xmi90gkt6tcgdwvidv837l2smwcoqu/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+  <script>tinymce.init({ selector: 'textarea' });</script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center justify-content-between">
+   
+      <a class="logo"><img src="<%= user.picture %>" alt="" class="img-fluid"></a>
+      <h1 class="logo"><a href="/admins/dietplan">DietGuru - <%= user.name %></a></h1>
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li><a href="/admins/dietplan">DIETPLANS</a></li>
+          <li class="active"><a href="/admins/dietplan/new">NEW</a></li>
+          <li><a href="/admins/logout">LOGOUT</a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+            
+            <div class="row">
+                <div class="col-8">
+                    <h1> <%= plan.title %> </h1>
+                </div>
+                <div class="col-2">
+                    <div class=" more position-relative" style="cursor: pointer;">
+                        <i class="material-icons p-2">more_vert</i>
+                        <div class="d-none card rounded-lg shadow-sm p-1 position-absolute" style="z-index: 9000;">
+                            <a href="#" class="rounded-pill p-2 mb-2 d-flex align-items-center"
+                                style="background:blue;">
+                                <i class="material-icons" style="color:white">create</i>
+                                <span class="" style="color:white">Edit</span>
+                            </a>
+                            <form action="" method="POST">
+                                <button class="rounded-pill p-2 bg-danger d-flex align-items-center">
+                                    <i class="material-icons" style="color:white">delete
+                                    </i> <span class="" style="color:white">Delete</span>
+                                </button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 card-img">
+                    <img src="/uploads/<%= plan.img %>" class="card-img" alt="...">
+
+                </div>
+            </div>
+            <div class="d-flex align-items-end mt-3">
+                <div class="mr-2">
+                    <img src="/uploads/<%= plan.img %>" 
+                        style="width: 60px; height: 60px;">
+                </div>
+                <div class=" flex-grow-1">
+                    <h5 class="" style="font-size: 16px; line-height: 0.5rem;">
+                        <span><b> <%= plan.url %></b></span></h5>
+                    <p style="font-size: 12px; line-height: 0.2rem;">
+                        <%= plan.timeCreated.toLocaleDateString() %> %></p>
+                </div>
+
+            </div>
+            <p class="card-text"> <%- plan.plan_description %>
+        </div>
+
+
+    </div>
+</main><!-- End #main -->
+
+<div class="container">
+  <div class="copyright">
+    &copy; Copyright <strong><span>DietGuru</span></strong>. All Rights Reserved
+  </div>
+  <div class="credits">
+    Designed by <a href="">us</a>
+  </div>
+</div>
+</footer><!-- End Footer -->
+
+<div id="preloader"></div>
+<a href="#" class="back-to-top"><i class="bx bx-up-arrow-alt"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="../../assets/vendor/jquery/jquery.min.js"></script>
+<script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+<script src="../../assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+<script src="../../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="../../assets/vendor/venobox/venobox.min.js"></script>
+<script src="../../assets/vendor/aos/aos.js"></script>
+
+<!-- Template Main JS File -->
+<script src="../../assets/js/main.js"></script>
+
+</body>
+
+</html>

@@ -4,6 +4,13 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
+const moreButton = document.querySelectorAll('.more');
+
+for (let i = 0; i < moreButton.length; i++) {
+  moreButton[i].addEventListener('click', () => {
+    moreButton[i].children[1].classList.toggle('d-none');
+  });
+}
 !(function($) {
   "use strict";
 

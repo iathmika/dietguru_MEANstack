@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>DietGuru</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdn.tiny.cloud/1/mxs4iu7vh07bhl5m90xmi90gkt6tcgdwvidv837l2smwcoqu/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>tinymce.init({ selector: 'textarea' });</script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../../../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../../assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="../../../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../../../assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="../../../assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="../../../assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="../../../assets/vendor/aos/aos.css" rel="stylesheet">
+
+  <script src="https://cdn.timekit.io/booking-js/v2/booking.min.js" defer></script>
+
+  <!-- Template Main CSS File -->
+  <link href="../../../assets/css/style.css" rel="stylesheet">
+
+  <script>tinymce.init({ selector: 'textarea' });</script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center justify-content-between">
+   
+      <a class="logo"><img src="<%= user.picture %>" alt="" class="img-fluid"></a>
+      <h1 class="logo"><a href="/admins/dietplan">DietGuru - <%= user.name %></a></h1>
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li><a href="/admins/dietplan">DIETPLANS</a></li>
+          <li class="active"><a href="/admins/dietplan/new">NEW</a></li>
+          <li><a href="/admins/logout">LOGOUT</a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+            
+    <div class="container">
+        <h1 class="mb-4 text-white">editing <%= plan.title %> </h1>
+
+        <form action="/admins/dietplan/<%= plan.id %>?_method=PUT" method="POST">
+            <div class="form-group">
+
+                <label for="title" class="text-white">Title</label>
+                <input type="text" class="form-control" placeholder="Title" name="title" value="<%= plan.title %>"
+                    required>
+            </div>
+
+            <div class="form-group">
+
+                <label for="url" class="text-white">Website URL</label>
+                <input type="url" class="form-control" placeholder="Website URL" name="url" value="<%= plan.url %>"
+                    required>
+            </div>
+            <div class="form-group">
+
+                <label for="plan_description" class="text-white">Plan description</label>
+                <textarea name="plan_description" placeholder="Plan description" class="form-control">
+
+                    <%= plan.plan_description %>
+                </textarea>
+            </div>
+
+            <div class="form-group">
+                <a href="/admins/dietplan" class="btn btn-warning">Cancel</a>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+
+</main><!-- End #main -->
+
+<div class="container">
+  <div class="copyright">
+    &copy; Copyright <strong><span>DietGuru</span></strong>. All Rights Reserved
+  </div>
+  <div class="credits">
+    Designed by <a href="">us</a>
+  </div>
+</div>
+</footer><!-- End Footer -->
+
+<div id="preloader"></div>
+<a href="#" class="back-to-top"><i class="bx bx-up-arrow-alt"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="../../../assets/vendor/jquery/jquery.min.js"></script>
+<script src="../../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../../assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+<script src="../../../assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+<script src="../../../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="../../../assets/vendor/venobox/venobox.min.js"></script>
+<script src="../../../assets/vendor/aos/aos.js"></script>
+
+<!-- Template Main JS File -->
+<script src="../../../assets/js/main.js"></script>
+
+</body>
+
+</html>
