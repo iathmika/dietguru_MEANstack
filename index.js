@@ -34,7 +34,8 @@ var mongoose = require('mongoose');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var MongoStore = require('connect-mongo');(session);
-
+//adding static functionality for images
+app.use(express.static('uploads'));
 mongoose.connect('mongodb://localhost:27017/login-register',{
   useNewUrlParser: true,
   useUnifiedTopology: true

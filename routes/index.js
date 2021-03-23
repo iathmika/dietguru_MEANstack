@@ -112,8 +112,6 @@ router.get('/profile', function (req, res, next) {
 	console.log('COOKIES: ')
 	console.log(req.cookies)
 	
-
-
 	console.log("profile");
 	User.findOne({unique_id:req.session.userId},function(err,data){
 		console.log("data");
@@ -170,8 +168,6 @@ User.updateOne({unique_id:req.session.userId}, { $set: {img: req.file.path } }, 
 
     console.log('saved to database');
     res.redirect('/profile');
-  
-    
   });
 });
 router.post('/forgetpass', function (req, res, next) {
