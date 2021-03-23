@@ -1,3 +1,27 @@
+var cluster = require('cluster');
+
+if(cluster.isMaster) {
+    var numWorkers = require('os').cpus().length;
+
+    console.log('Master cluster setting up ' + numWorkers + ' workers...');
+
+    for(var i = 0; i < numWorkers; i++) {
+        cluster.fork();
+    }
+
+    cluster.on('online', function(worker) {
+        console.log('Worker ' + worker.process.pid + ' is online');
+    });
+
+    cluster.on('exit', function(worker, code, signal) {
+        console.log('Worker ' + worker.process.pid + ' died with code: ' + code + ', and signal: ' + signal);
+        console.log('Starting a new worker');
+        cluster.fork();
+    });
+} else {
+   
+
+
 var express = require('express');
 var env = require('dotenv').config()
 var ejs = require('ejs');
@@ -63,9 +87,8 @@ app.use('/', index);
 var r_index = require('./routes/recipes');
 app.use('/recipes', r_index);
 
-app.post('/login', (req, res)=>{
-  res.render('login');
-});
+var a_index = require('./routes/admins');
+app.use('/admins', a_index);
 
 // catch 404 erro
 app.use(function(req,res){
@@ -79,4 +102,7 @@ const sslServer = https.createServer({
   app
 );
 
-sslServer.listen('3443', ()=>console.log('Secure server started on post 3443.'));
+
+
+sslServer.listen('3443', ()=>console.log('Secure server started on port 3443 by Process:'+process.pid));
+}
