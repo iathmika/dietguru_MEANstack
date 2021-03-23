@@ -5,7 +5,6 @@ var path = require('path');
 var https = require('https');
 var fs = require('fs');
 var app = express();
-
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var session = require('express-session');

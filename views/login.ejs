@@ -1,68 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Login</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-	</script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<link href="assets/css/style.css" rel="stylesheet">
-
-	<script type="text/javascript">
-		$(document).ready(function(){
-
-			$( "#form" ).submit(function(event) {
-				event.preventDefault();
-
-				$.ajax({
-					type: 'POST',
-					url: '/login',
-					data: $('#form').serialize(),
-					dataType: "json",
-					success: function(response){
-						//alert("a");
-						//console.log(response.Success);
-						$('#form')[0].reset();
-
-						document.getElementById("check").innerHTML=response.Success;
-         					//ADD THIS CODE
-         					setTimeout(function(){
-         						document.getElementById("check").innerHTML="";
-         					},3000);
-         					if (response.Success=="Success!") {
-         						document.getElementById("aa").click();
-         					};
-         				},
-         				error: function() {
-         				}
-         			})
-			});
-
-		});
-	</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-client_id" content="333642631602-h2l1m29lfb5c1d0dta76nvv4so4bjeo4.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <title>Login</title>
 </head>
 <body>
-	<div class="col-md-4 col-md-offset-4">
-		<div>
-			<p>Login</p>
-		</div>
-		<div class="form-group">
-			<form id="form" method="post" >
-				<input type="text" name="email" placeholder="E-mail" required="" class="form-control"><br/>
-				<input type="password" name="password" placeholder="Password" required="" class="form-control"><br/>
-				<input type="submit" value="Login" class="btn btn-success">
-			</form>
-		</div>
-		<div class="mssg bg-danger">
-			<span id="check" ></span>
-		</div>
-		<div id="LangTable"><a href="/profile" id="aa"></a>
-		</div>
-		<div><span>Do you forgot password?</span><a href="/forgetpass">Click here</a>
-		<div><span>Create a new Account?</span><a href="/">Register here</a>
 
-		</div>
-		
-	</div>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+    <!-- <a href="#" onclick="signOut();">Sign out</a> -->
+    <script>
+    function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+        console.log('User signed out.');
+        });
+    }
+    </script>
+
+    <script>
+    function onSignIn(googleUser) {
+        // var profile = googleUser.getBasicProfile();
+        // console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        // console.log('Name: ' + profile.getName());
+        // console.log('Image URL: ' + profile.getImageUrl());
+        // console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+
+        var id_token = googleUser.getAuthResponse().id_token;
+        // console.log(id_token);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/login');
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onload = function() {
+            console.log('Signed in as: ' + xhr.responseText);
+            if(xhr.responseText == 'success'){
+                signOut();
+                location.assign('/profile')
+            }
+        };
+        xhr.send(JSON.stringify({token : id_token}));
+      }
+    </script>
+    
 </body>
 </html>
